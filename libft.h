@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 04:57:28 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/10 13:27:21 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/10 19:02:55 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 int			ft_atoi(const char *s);
 void		ft_bzero(void *s, size_t n);
@@ -40,5 +41,15 @@ char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char		*ft_strrchr(const char *s, int c);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
+char		*ft_substr(const char *s, unsigned int start, size_t len);
+char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strtrim(char const *s1, char const *set);
+char		**ft_split(char const *s, char c);
+char		*ft_itoa(int n);
+char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void		ft_putchar_fd(char c, int fd);
+void		ft_putendl_fd(char *s, int fd);
+void		ft_putstr_fd(char *s, int fd);
+void		ft_putnbr_fd(int n, int fd);
 
 #endif
