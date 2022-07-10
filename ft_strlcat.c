@@ -6,41 +6,31 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 23:20:33 by naharagu          #+#    #+#             */
-/*   Updated: 2022/04/28 02:23:35 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/10 13:27:58 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_strlen(char *str)
-{
-	int	k;
+#include "libft.h"
 
-	k = 0;
-	while (str[k] != '\0')
-		k++;
-	return (k);
-}
-
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+size_t	ft_strlcat(char *dest, char *src, size_t dstsize)
 {
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	len_dest;
-	unsigned int	len_src;
+	size_t	i;
+	size_t	j;
+	size_t	len;
 
 	i = 0;
 	j = 0;
-	while (dest[j] != '\0')
-		j++;
-	len_dest = j;
-	len_src = ft_strlen(src);
-	if (size < len_dest || size == 0)
-		return (size + len_src);
-	while (src[i] != '\0' && i < size - len_dest - 1)
-	{
-		dest[i] = src[i];
-		i++;
-		j++;
-	}
-	dest[j] = '\0';
-	return (len_dest + len_src);
+	len = ft_strlen(src);
+	if (dstsize == 0)
+		return (len);
+	else if (dstsize < ft_strlen(dest))
+		len += dstsize;
+	else
+		len += ft_strlen(dest);
+	while (dest[i])
+		++i;
+	while (src[j] && i < dstsize - 1)
+		dest[i++] = src[j++];
+	dest[i] = '\0';
+	return (len);
 }
