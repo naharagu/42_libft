@@ -36,18 +36,33 @@ SRCS    = 	ft_atoi.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c
 
-NAME	= libft.a
+SRCS_BNS =	ft_lstnew.c \
+			ft_lstadd_front.c \
+			ft_lstsize.c \
+			ft_lstlast.c \
+			ft_lstadd_back.c \
+			ft_lstdelone.c \
+			ft_lstclear.c \
+			ft_lstiter.c \
+			ft_lstmap.c
 
-OBJS	= ${SRCS:%.c=%.o}
+NAME		= libft.a
 
-${NAME}: ${OBJS}
-	${CC} ${CFLAGS} -c ${SRCS}
-	ar rc ${NAME} ${OBJS}
+OBJS		= ${SRCS:%.c=%.o}
 
-all: ${NAME}
+OBJS_BNS	= $(SRCS_BNS:%.c=%.o)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -c $(SRCS)
+	ar rc $(NAME) $(OBJS)
+
+all: $(NAME)
+bonus: $(NAME)
+	$(CC) $(CFLAGS) -c $(SRCS_BNS)
+	ar rc $(NAME) $(OBJS_BNS)
 clean:
-	rm -f ${OBJS}
+	rm -f $(OBJS)
 fclean: clean
-	rm -f ${NAME}
+	rm -f $(NAME)
 re: fclean all
 .PHONY: all clean fclean re
