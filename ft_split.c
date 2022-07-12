@@ -6,83 +6,80 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/10 17:39:03 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/12 09:39:40 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_charset(char a, char *charset)
+static size_t	ft_counttwodimmemory(char const *s, char c)
 {
-	while (*charset)
-	{
-		if (a == *charset)
-			return (1);
-		charset++;
-	}
-	return (0);
-}
+	size_t	i;
+	size_t	count;
 
-int	count_strlen(char const *str, char *charset)
-{
-	int	count;
-
+	i = 0;
 	count = 0;
-	while (str[count] && !is_charset(str[count], charset))
-		count++;
-	return (count);
-}
-
-int	count_words(char const *str, char *charset)
-{
-	int	count;
-	int	len_str;
-
-	count = 0;
-	while (*str)
+	while (s[i] != '\0')
 	{
-		while (*str && is_charset(*str, charset))
-			str++;
-		len_str = count_strlen(str, charset);
-		str += len_str;
-		if (len_str)
+		if ((i == 0 || s[i - 1] == c) && s[i] != c)
 			count++;
+		i++;
 	}
 	return (count);
 }
 
-void	copy_str(char *dest, const char *start_str, const char *end_str)
+static char	**ft_mallocfree(char **dst, size_t i)
 {
-	while (start_str < end_str)
+	while (i >= 0)
 	{
-		*dest = *start_str;
-		start_str++;
-		dest++;
+		free (dst[i]);
+		dst[i--] = NULL;
 	}
-	*dest = 0;
+	free (dst);
+	dst = NULL;
+	return (dst);
+}
+
+static char	**ft_onedimgetmemstr(char **dst, char const *s, char c)
+{
+	size_t	i;
+	size_t	j;
+	size_t	len;
+
+	i = 0;
+	j = 0;
+	len = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] != c)
+			len++;
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
+		{
+			dst[j] = (char *)malloc(sizeof(char) * (len + 1));
+			if (!dst)
+				return (ft_mallocfree (dst, j));
+			ft_strlcpy (dst[j], &s[i - len + 1], len + 1);
+			j++;
+			len = 0;
+		}
+		i++;
+	}
+	dst[j] = NULL;
+	return (dst);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char		**result;
-	int			i;
-	char const	*start_str;
+	char	**dst;
+	size_t	count;
 
-	result = (char **)malloc(sizeof(char *) * (count_words(s, &c) + 1));
-	i = 0;
-	while (*s)
-	{
-		if (!is_charset(*s, &c))
-		{
-			start_str = s;
-			while (*s && !is_charset(*s, &c))
-				s++;
-			result[i] = (char *)malloc(sizeof(char) * (s - start_str + 1));
-			copy_str(result[i], start_str, s);
-			i++;
-		}
-		s++;
-	}
-	result[i] = 0;
-	return (result);
+	if (s == NULL)
+		return (NULL);
+	count = ft_counttwodimmemory (s, c);
+	dst = (char **)malloc(sizeof(char *) * (count + 1));
+	if (!dst)
+		return (NULL);
+	if (!ft_onedimgetmemstr (dst, s, c))
+		return (NULL);
+	return (dst);
 }

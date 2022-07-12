@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/10 13:30:09 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/12 16:18:37 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
+	int	len;
 
-	i = ft_strlen(s) + 1;
-	while (i--)
-		if (s[i] == c)
-			return ((char *)s + i);
+	len = ft_strlen((char *)s);
+	while (len >= 0)
+	{
+		if (s[len] == (unsigned char)c)
+			return ((char *)(s + len));
+		len--;
+	}
 	return (NULL);
 }
