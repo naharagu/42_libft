@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 23:20:33 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/10 10:47:08 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/13 10:47:53 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	size_t	i;
 
 	i = 0;
-	if (!src)
-		return (0);
 	if (dstsize)
 	{
 		while (i < dstsize - 1 && src[i])

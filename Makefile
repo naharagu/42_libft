@@ -53,17 +53,20 @@ OBJS		= ${SRCS:%.c=%.o}
 
 OBJS_BNS	= $(SRCS_BNS:%.c=%.o)
 
+ifdef WITH_BONUS
+	SRCS += $(SRCS_BNS)
+	OBJS += $(OBJS_BNS)
+endif
+
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -c $(SRCS)
 	ar rc $(NAME) $(OBJS)
 
 all: $(NAME)
-bonus: $(NAME)
-	$(CC) $(CFLAGS) -c $(SRCS_BNS)
-	ar rc $(NAME) $(OBJS_BNS)
 clean:
 	rm -f $(OBJS)
 fclean: clean
 	rm -f $(NAME)
 re: fclean all
-.PHONY: all clean fclean re
+bonus:
+	make WITH_BONUS=1
+.PHONY: all clean fclean re bonus
