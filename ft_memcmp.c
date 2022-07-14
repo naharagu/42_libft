@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/10 13:14:08 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/14 08:41:30 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 
 	i = -1;
 	while (++i < n)
-		if (((unsigned char *)s1)[i] != ((unsigned char *)s2)[i])
-			return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+		if (((const unsigned char *)s1)[i] != ((const unsigned char *)s2)[i])
+			return (((const unsigned char *)s1)[i] - ((const unsigned char *)s2)[i]);
 	return (0);
 }

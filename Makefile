@@ -54,7 +54,6 @@ OBJS		= ${SRCS:%.c=%.o}
 OBJS_BNS	= $(SRCS_BNS:%.c=%.o)
 
 ifdef WITH_BONUS
-	SRCS += $(SRCS_BNS)
 	OBJS += $(OBJS_BNS)
 endif
 
@@ -63,7 +62,7 @@ $(NAME): $(OBJS)
 
 all: $(NAME)
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(OBJS_BNS)
 fclean: clean
 	rm -f $(NAME)
 re: fclean all
