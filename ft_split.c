@@ -6,13 +6,13 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/14 18:26:53 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/15 09:32:42 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	count_word(char const *s, char c)
+static size_t	count_word(char const *s, char c)
 {
 	size_t	i;
 	size_t	count;
@@ -28,7 +28,7 @@ size_t	count_word(char const *s, char c)
 	return (count);
 }
 
-char	**free_dst(char **dst, size_t i)
+static char	**free_dst(char **dst, size_t i)
 {
 	while (i >= 0)
 	{
@@ -40,7 +40,7 @@ char	**free_dst(char **dst, size_t i)
 	return (dst);
 }
 
-char	**split_helper(char **dst, char const *s, char c)
+static char	**split_helper(char **dst, char const *s, char c)
 {
 	size_t	i;
 	size_t	j;
