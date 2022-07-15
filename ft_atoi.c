@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/15 14:03:14 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/15 14:36:22 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_atoi(const char *str)
 			return ((int)LONG_MAX);
 		else if (sign == -1 && (res < ((LONG_MIN - (*str - '0')) * sign) / 10))
 			return ((int)LONG_MIN);
-		res = res * 10 + (*str++ - '0');
+		res = res * 10 + ((*str++ - '0') * sign);
 	}
-	return (res * sign);
+	return (res);
 }
