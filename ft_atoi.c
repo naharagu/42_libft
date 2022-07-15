@@ -6,37 +6,31 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/10 13:01:39 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/15 14:03:14 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *s)
+int	ft_atoi(const char *str)
 {
 	int			sign;
 	long long	res;
 
 	sign = 1;
 	res = 0;
-	while (*s == 32 || (*s >= 9 && *s <= 13))
-		++s;
-	if (*s == '-' || *s == '+')
-		if (*s++ == '-')
+	while (*str == 32 || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-' || *str == '+')
+		if (*str++ == '-')
 			sign = -1;
-	while (ft_isdigit(*s))
+	while (ft_isdigit(*str))
 	{
-		if ((res >= 0) != ((res << 1) >= 0) || \
-			(res >= 0) != ((res << 2) >= 0) || \
-			(res >= 0) != ((res << 3) >= 0) || \
-			(res >= 0) != (res * 10 + (*s - '0') >= 0))
-		{
-			if (sign == 1)
-				return (-1);
-			else
-				return (0);
-		}
-		res = res * 10 + (*s++ - '0');
+		if (sign == 1 && (res > ((LONG_MAX - (*str - '0')) * sign) / 10))
+			return ((int)LONG_MAX);
+		else if (sign == -1 && (res < ((LONG_MIN - (*str - '0')) * sign) / 10))
+			return ((int)LONG_MIN);
+		res = res * 10 + (*str++ - '0');
 	}
 	return (res * sign);
 }
