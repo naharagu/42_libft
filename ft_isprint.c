@@ -6,13 +6,11 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 22:18:12 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/06 22:48:14 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/14 21:32:41 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(int c)
 {
-	if (c >= 32 && c <= 126)
-		return (1);
-	return (0);
+	return (c >= 32 && c <= 126);
 }

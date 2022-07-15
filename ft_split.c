@@ -6,20 +6,20 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/12 09:39:40 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/14 18:26:53 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_counttwodimmemory(char const *s, char c)
+size_t	count_word(char const *s, char c)
 {
 	size_t	i;
 	size_t	count;
 
 	i = 0;
 	count = 0;
-	while (s[i] != '\0')
+	while (s[i])
 	{
 		if ((i == 0 || s[i - 1] == c) && s[i] != c)
 			count++;
@@ -28,7 +28,7 @@ static size_t	ft_counttwodimmemory(char const *s, char c)
 	return (count);
 }
 
-static char	**ft_mallocfree(char **dst, size_t i)
+char	**free_dst(char **dst, size_t i)
 {
 	while (i >= 0)
 	{
@@ -40,7 +40,7 @@ static char	**ft_mallocfree(char **dst, size_t i)
 	return (dst);
 }
 
-static char	**ft_onedimgetmemstr(char **dst, char const *s, char c)
+char	**split_helper(char **dst, char const *s, char c)
 {
 	size_t	i;
 	size_t	j;
@@ -57,7 +57,7 @@ static char	**ft_onedimgetmemstr(char **dst, char const *s, char c)
 		{
 			dst[j] = (char *)malloc(sizeof(char) * (len + 1));
 			if (!dst)
-				return (ft_mallocfree (dst, j));
+				return (free_dst (dst, j));
 			ft_strlcpy (dst[j], &s[i - len + 1], len + 1);
 			j++;
 			len = 0;
@@ -75,11 +75,11 @@ char	**ft_split(char const *s, char c)
 
 	if (s == NULL)
 		return (NULL);
-	count = ft_counttwodimmemory (s, c);
+	count = count_word(s, c);
 	dst = (char **)malloc(sizeof(char *) * (count + 1));
 	if (!dst)
 		return (NULL);
-	if (!ft_onedimgetmemstr (dst, s, c))
+	if (!split_helper (dst, s, c))
 		return (NULL);
 	return (dst);
 }
