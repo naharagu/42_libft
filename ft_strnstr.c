@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/10 12:27:24 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/16 16:09:11 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t n)
 		return ((char *)haystack);
 	while (*haystack && n-- >= len)
 	{
-		if (*haystack == *needle && !ft_memcmp(haystack, needle, len))
+		if (!ft_memcmp(haystack, needle, len))
 			return ((char *)haystack);
 		++haystack;
 	}
