@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/15 09:32:42 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/16 13:45:29 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,17 @@ static size_t	count_word(char const *s, char c)
 	return (count);
 }
 
-static char	**free_dst(char **dst, size_t i)
+static char	**free_dst(char **dst, size_t j)
 {
-	while (i >= 0)
+	size_t	count;
+
+	count = 0;
+	while (count < j)
 	{
-		free (dst[i]);
-		dst[i--] = NULL;
+		free (dst[j]);
+		count++;
 	}
 	free (dst);
-	dst = NULL;
 	return (dst);
 }
 
