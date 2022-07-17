@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/16 13:45:29 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/17 08:11:43 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	**split_helper(char **dst, char const *s, char c)
 		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
 		{
 			dst[j] = (char *)malloc(sizeof(char) * (len + 1));
-			if (!dst)
+			if (!dst[j])
 				return (free_dst (dst, j));
 			ft_strlcpy (dst[j], &s[i - len + 1], len + 1);
 			j++;
