@@ -6,7 +6,7 @@
 /*   By: naharagu <naharagu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 06:19:05 by naharagu          #+#    #+#             */
-/*   Updated: 2022/07/10 17:19:29 by naharagu         ###   ########.fr       */
+/*   Updated: 2022/07/23 09:45:30 by naharagu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	i = ft_strlen(s1);
 	j = ft_strlen(s2);
-	res = (char *)malloc(i + j + 1);
+	res = malloc((i + j + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
 	ft_strlcpy(res, s1, i + 1);
